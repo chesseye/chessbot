@@ -8,11 +8,11 @@ def squares():
 
 def entities():
     return {
-        "Colors": [
+        "color": [
             [ "white" ],
             [ "black" ]
         ],
-        "Figures": [
+        "figure": [
             [ "king" ],
             [ "queen" ],
             [ "rook", "tower" ],
@@ -20,7 +20,7 @@ def entities():
             [ "knight", "horse" ],
             [ "pawn" ]
         ],
-        "Squares": [ [ s ] for s in squares() ]
+        "square": [ [ s ] for s in squares() ]
     }
 
 def json_entities():
