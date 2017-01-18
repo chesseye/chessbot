@@ -1,9 +1,13 @@
+open Types
 open Lwt
 open Wcs_message_t
 
 let error default fmt = Log.error "Rest" default fmt
 
-let message username password workspace_id req_msg =
+let message config req_msg =
+  let username, password, workspace_id =
+    (config.wcs_user, config.wcs_password, config.wcs_workspace_id)
+  in
   let uri =
     Uri.of_string
       ("https://gateway.watsonplatform.net/conversation/api/v1/workspaces/"^workspace_id^"/message?version=2016-07-11")

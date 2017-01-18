@@ -17,7 +17,7 @@ all: chessbot
 chessbot: chessbot.$(TARGET)
 	cp _build/chessbot.$(TARGET) chessbot
 
-chessbot.$(TARGET): wcs_message_t.ml wcs_message_t.mli wcs_message_j.ml wcs_message_j.mli FORCE
+chessbot.$(TARGET): wcs_message_t.mli wcs_message_j.mli context_types_t.mli context_types_j.mli FORCE
 	$(OCAMLBUILD) -use-ocamlfind -pkg atdgen -pkg cohttp.lwt -pkg ppx_deriving_yojson chessbot.$(TARGET)
 
 wcs_message_t.ml wcs_message_t.mli: wcs_message.atd
@@ -26,10 +26,19 @@ wcs_message_t.ml wcs_message_t.mli: wcs_message.atd
 wcs_message_j.ml wcs_message_j.mli: wcs_message.atd
 	atdgen -j -j-std wcs_message.atd
 
+context_types_t.ml context_types_t.mli: context_types.atd
+	atdgen -t context_types.atd
+
+context_types_j.ml context_types_j.mli: context_types.atd
+	atdgen -j -j-std context_types.atd
+
 
 clean:
 	ocamlbuild -clean
-	rm -f wcs_message_t.ml wcs_message_t.mli wcs_message_j.ml wcs_message_j.mli
+	rm -f wcs_message_t.ml wcs_message_t.mli \
+		wcs_message_j.ml wcs_message_j.mli \
+		context_types_t.ml context_types_t.mli \
+		context_types_j.ml context_types_j.mli
 
 realclean: clean
 	rm -f *~ chessbot

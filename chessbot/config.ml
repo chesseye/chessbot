@@ -1,8 +1,4 @@
-type config = {
-    wcs_user: string;
-    wcs_password: string;
-    wcs_workspace_id: string;
-  }
+open Types
 
 let wcs_user = ref None
 let set_wcs_user s =
