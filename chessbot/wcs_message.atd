@@ -1,0 +1,39 @@
+type json <ocaml module="Yojson.Basic"> = abstract
+
+type c_input = {
+    text : string;
+  } <ocaml field_prefix="cin_">
+
+type c_entity = {
+    entity : string;
+    location : json;
+    value : string;
+  } <ocaml field_prefix="ce_">
+
+type c_intent = {
+    intent : string;
+    confidence : float;
+  } <ocaml field_prefix="ce_">
+
+type c_output = {
+    log_messages : json;
+    text : string list;
+  } <ocaml field_prefix="cout_">
+
+type message_request = {
+    input : c_input;
+    ~alternate_intents <ocaml default="false"> : bool;
+    ?context : json option;
+    ?entities : c_entity list option;
+    ?intents : c_intent list option;
+    ?output : c_output option;
+  } <ocaml field_prefix="req_">
+
+type message_response = {
+    input : c_input;
+    ~alternate_intents <ocaml default="false"> : bool;
+    context : json;
+    entities : c_entity list;
+    intents : c_intent list;
+    output : c_output;
+  } <ocaml field_prefix="rsp_">
