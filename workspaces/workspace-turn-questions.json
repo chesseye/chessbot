@@ -1,0 +1,746 @@
+{
+  "name": "chessbot turn questions",
+  "created": "2017-01-18T20:43:25.780Z",
+  "intents": [],
+  "updated": "2017-01-18T20:47:49.056Z",
+  "entities": [
+    {
+      "type": null,
+      "entity": "binary-answer",
+      "source": null,
+      "values": [
+        {
+          "value": "no",
+          "created": "2017-01-18T20:43:47.069Z",
+          "updated": "2017-01-18T20:43:47.069Z",
+          "metadata": null,
+          "synonyms": [
+            "nope"
+          ]
+        },
+        {
+          "value": "yes",
+          "created": "2017-01-18T20:43:47.069Z",
+          "updated": "2017-01-18T20:43:47.069Z",
+          "metadata": null,
+          "synonyms": []
+        }
+      ],
+      "created": "2017-01-18T20:43:47.023Z",
+      "updated": "2017-01-18T20:43:47.023Z",
+      "open_list": null,
+      "description": null
+    },
+    {
+      "type": null,
+      "entity": "castle",
+      "source": null,
+      "values": [
+        {
+          "value": "king-side castle",
+          "created": "2017-01-18T20:43:47.071Z",
+          "updated": "2017-01-18T20:43:47.071Z",
+          "metadata": null,
+          "synonyms": [
+            "kingside",
+            "king-side",
+            "kingside castle",
+            "short",
+            "short castle"
+          ]
+        },
+        {
+          "value": "queen-side castle",
+          "created": "2017-01-18T20:43:47.071Z",
+          "updated": "2017-01-18T20:43:47.071Z",
+          "metadata": null,
+          "synonyms": [
+            "long",
+            "long castle",
+            "queenside",
+            "queen-side",
+            "queenside castle"
+          ]
+        }
+      ],
+      "created": "2017-01-18T20:43:47.023Z",
+      "updated": "2017-01-18T20:43:47.023Z",
+      "open_list": null,
+      "description": null
+    },
+    {
+      "type": null,
+      "entity": "color",
+      "source": null,
+      "values": [
+        {
+          "value": "black",
+          "created": "2017-01-18T20:43:47.068Z",
+          "updated": "2017-01-18T20:43:47.068Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "white",
+          "created": "2017-01-18T20:43:47.068Z",
+          "updated": "2017-01-18T20:43:47.068Z",
+          "metadata": null,
+          "synonyms": []
+        }
+      ],
+      "created": "2017-01-18T20:43:47.023Z",
+      "updated": "2017-01-18T20:43:47.023Z",
+      "open_list": null,
+      "description": null
+    },
+    {
+      "type": null,
+      "entity": "figure",
+      "source": null,
+      "values": [
+        {
+          "value": "bishop",
+          "created": "2017-01-18T20:43:47.068Z",
+          "updated": "2017-01-18T20:43:47.068Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "king",
+          "created": "2017-01-18T20:43:47.068Z",
+          "updated": "2017-01-18T20:43:47.068Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "knight",
+          "created": "2017-01-18T20:43:47.068Z",
+          "updated": "2017-01-18T20:43:47.068Z",
+          "metadata": null,
+          "synonyms": [
+            "horse"
+          ]
+        },
+        {
+          "value": "pawn",
+          "created": "2017-01-18T20:43:47.068Z",
+          "updated": "2017-01-18T20:43:47.068Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "queen",
+          "created": "2017-01-18T20:43:47.068Z",
+          "updated": "2017-01-18T20:43:47.068Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "rook",
+          "created": "2017-01-18T20:43:47.068Z",
+          "updated": "2017-01-18T20:43:47.068Z",
+          "metadata": null,
+          "synonyms": [
+            "tower"
+          ]
+        }
+      ],
+      "created": "2017-01-18T20:43:47.023Z",
+      "updated": "2017-01-18T20:43:47.023Z",
+      "open_list": null,
+      "description": null
+    },
+    {
+      "type": null,
+      "entity": "pair-selector",
+      "source": null,
+      "values": [
+        {
+          "value": "both",
+          "created": "2017-01-18T20:43:47.068Z",
+          "updated": "2017-01-18T20:43:47.068Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "former",
+          "created": "2017-01-18T20:43:47.068Z",
+          "updated": "2017-01-18T20:43:47.068Z",
+          "metadata": null,
+          "synonyms": [
+            "first"
+          ]
+        },
+        {
+          "value": "latter",
+          "created": "2017-01-18T20:43:47.068Z",
+          "updated": "2017-01-18T20:43:47.068Z",
+          "metadata": null,
+          "synonyms": [
+            "second"
+          ]
+        },
+        {
+          "value": "neither",
+          "created": "2017-01-18T20:43:47.068Z",
+          "updated": "2017-01-18T20:43:47.068Z",
+          "metadata": null,
+          "synonyms": []
+        }
+      ],
+      "created": "2017-01-18T20:43:47.023Z",
+      "updated": "2017-01-18T20:43:47.023Z",
+      "open_list": null,
+      "description": null
+    },
+    {
+      "type": null,
+      "entity": "square",
+      "source": null,
+      "values": [
+        {
+          "value": "a1",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "a2",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "a3",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "a4",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "a5",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "a6",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "a7",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "a8",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "b1",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "b2",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "b3",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "b4",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "b5",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "b6",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "b7",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "b8",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "c1",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "c2",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "c3",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "c4",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "c5",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "c6",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "c7",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "c8",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "d1",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "d2",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "d3",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "d4",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "d5",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "d6",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "d7",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "d8",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "e1",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "e2",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "e3",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "e4",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "e5",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "e6",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "e7",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "e8",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "f1",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "f2",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "f3",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "f4",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "f5",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "f6",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "f7",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "f8",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "g1",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "g2",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "g3",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "g4",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "g5",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "g6",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "g7",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "g8",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "h1",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "h2",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "h3",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "h4",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "h5",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "h6",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "h7",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "value": "h8",
+          "created": "2017-01-18T20:43:47.070Z",
+          "updated": "2017-01-18T20:43:47.070Z",
+          "metadata": null,
+          "synonyms": []
+        }
+      ],
+      "created": "2017-01-18T20:43:47.023Z",
+      "updated": "2017-01-18T20:43:47.023Z",
+      "open_list": null,
+      "description": null
+    }
+  ],
+  "language": "en",
+  "metadata": null,
+  "description": "Figures out whose turn it is",
+  "dialog_nodes": [
+    {
+      "go_to": null,
+      "output": null,
+      "parent": null,
+      "context": null,
+      "created": "2017-01-18T20:44:04.798Z",
+      "updated": "2017-01-18T20:44:04.798Z",
+      "metadata": null,
+      "conditions": "anything_else",
+      "description": null,
+      "dialog_node": "node_10_1484772244654",
+      "previous_sibling": "The question"
+    },
+    {
+      "go_to": null,
+      "output": {
+        "text": {
+          "values": [
+            "Thanks."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "The question",
+      "context": {
+        "color": "@color"
+      },
+      "created": "2017-01-18T20:45:20.568Z",
+      "updated": "2017-01-18T20:46:14.551Z",
+      "metadata": null,
+      "conditions": "@color",
+      "description": null,
+      "dialog_node": "Response",
+      "previous_sibling": null
+    },
+    {
+      "go_to": null,
+      "output": {
+        "text": {
+          "values": [
+            "Whose turn is it?",
+            "Which side is to play?",
+            "Which player plays next?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": null,
+      "context": null,
+      "created": "2017-01-18T20:43:55.856Z",
+      "updated": "2017-01-18T20:44:48.574Z",
+      "metadata": null,
+      "conditions": "true",
+      "description": null,
+      "dialog_node": "The question",
+      "previous_sibling": null
+    },
+    {
+      "go_to": {
+        "return": null,
+        "selector": "user_input",
+        "dialog_node": "Response"
+      },
+      "output": {
+        "text": {
+          "values": [
+            "I didn't quite catch that. Whose turn is it?",
+            "I couldn't understand. Whose turn is it?",
+            "Sorry, I didn't get that. Whose turn is it? Just say \"black\" or \"white\"."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "The question",
+      "context": null,
+      "created": "2017-01-18T20:46:28.047Z",
+      "updated": "2017-01-18T20:47:49.056Z",
+      "metadata": null,
+      "conditions": "true",
+      "description": null,
+      "dialog_node": "No response",
+      "previous_sibling": "Response"
+    }
+  ],
+  "workspace_id": "3924162f-03d9-422d-b474-37c56c4e39e1",
+  "counterexamples": []
+}
