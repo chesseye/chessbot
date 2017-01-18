@@ -20,7 +20,19 @@ def entities():
             [ "knight", "horse" ],
             [ "pawn" ]
         ],
-        "square": [ [ s ] for s in squares() ]
+        "square": [
+            [ s ] for s in squares()
+        ],
+        "castle": [
+            [ "queen-side castle", "queenside castle", "long castle", "queen-side", "queenside", "long" ],
+            [ "king-side castle", "kingside castle", "short castle", "king-side", "kingside", "short" ]
+        ],
+        "pair-selector": [
+            [ "both" ],
+            [ "neither" ],
+            [ "former", "first" ],
+            [ "latter", "second" ]
+        ]
     }
 
 def json_entities():
