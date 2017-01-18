@@ -8,6 +8,10 @@ def squares():
 
 def entities():
     return {
+        "binary-answer": [
+            [ "yes" ],
+            [ "no", "nope" ]
+        ],
         "color": [
             [ "white" ],
             [ "black" ]
