@@ -3,53 +3,7 @@ open Context_types_t
 open Util
 open Types
 
-let wcs wcs_config (inputv: string) =
-  let req_msg =
-    { req_input = { cin_text = inputv };
-      req_alternate_intents = false;
-      req_context = None;
-      req_entities = None;
-      req_intents = None;
-      req_output = None; }
-  in
-  let resp =
-    Rest.message wcs_config req_msg
-  in
-  resp
-
-let get_result (json: Yojson.Basic.json) =
-  let ctx =
-    begin try
-      Context_types_j.context_of_string (Yojson.Basic.to_string json)
-    with _ ->
-      raise Not_found
-    end
- in
-  let color =
-    begin match ctx.ctx_result.ctx_piece_color with
-    | "white" -> White
-    | "black" -> Black
-    | color ->
-        Format.eprintf "Unknown color: %s" color;
-        White
-    end
-  in
-  let figure =
-    begin match ctx.ctx_result.ctx_piece_color with
-    | "bishop" -> Bishop
-    | "king" -> King
-    | "pawn" -> Pawn
-    | "queen" -> Queen
-    | "knight" -> Knight
-    | "rook" -> Rook
-    | figure ->
-        Format.eprintf "Unknown figure: %s" figure;
-        Pawn
-    end
-  in
-  (figure, color)
-
-let get_piece wcs_config ((i, j): int * int) : piece =
+let get_figure wcs_config (color: color) ((i, j): int * int) : piece_type =
   let rec loop ctx input =
     let req_msg =
       { req_input = { cin_text = input };
@@ -62,17 +16,17 @@ let get_piece wcs_config ((i, j): int * int) : piece =
     let resp = Rest.message wcs_config req_msg in
     Format.printf "Chessbot: %s@."
       (Wcs_message_j.string_of_c_output resp.rsp_output);
-    begin
-      try
-      get_result resp.rsp_context
-    with
-    | Not_found ->
+    begin match context_of_json resp.rsp_context with
+    | Some { ctx_figure = Some figure } ->
+        figure_of_string figure
+    | _ ->
         let txt = input_line stdin in
         loop resp.rsp_context txt
     end
   in
   let ctx =
-    `Assoc (["square", `String (string_of_square (i, j))])
+    `Assoc [ ("square", `String (string_of_square (i, j)));
+             ("color", `String (string_of_color color)); ]
   in
   loop ctx ""
 
@@ -82,8 +36,8 @@ let position_of_mask wcs_config (m : mask) =
     for j = 0 to 7 do
       begin match m.(i).(j) with
       | Some c ->
-          let p = get_piece wcs_config (i, j) in
-          board.(i).(j) <- Piece p
+          let f = get_figure wcs_config c (i, j) in
+          board.(i).(j) <- Piece (f, c)
       | None -> ()
       end
     done

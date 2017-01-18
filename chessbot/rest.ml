@@ -30,4 +30,5 @@ let message config req_msg =
         end
   in
   let rsp = Lwt_main.run call in
+  Format.eprintf "XXX %s XXX@." rsp;
   Wcs_message_j.message_response_of_string rsp

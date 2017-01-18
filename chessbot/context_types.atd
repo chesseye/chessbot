@@ -1,10 +1,6 @@
-type ctx_piece_type = {
-    color : string;
-    figure : string;
-  } <ocaml field_prefix="ctx_piece_">
-
-
 type context = {
-    result: ctx_piece_type
+    ?undomoves : int option;
+    ?figure : string option;
+    ?castling_rights : bool list option;
+    ?color : string option;
   } <ocaml field_prefix="ctx_">
-
