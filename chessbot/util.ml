@@ -37,3 +37,15 @@ let figure_of_string figure =
       Format.eprintf "Unknown figure: %s" figure;
       Pawn
   end
+
+let get_king (board: board) (c: color) : (int * int) option =
+  let k = ref None in
+  for i = 0 to 7 do
+    for j = 0 to 7 do
+      begin match board.(i).(j) with
+      | Piece (King, c') when c = c' -> k := Some (i, j)
+      | _ -> ()
+      end
+    done
+  done;
+  !k

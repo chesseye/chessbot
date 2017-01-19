@@ -1,6 +1,6 @@
 type context = {
     ?undomoves : int option;
     ?figure : string option;
-    ?castling_rights : bool list option;
+    ?castling_rights <json name="castling-rights"> : bool list option;
     ?color : string option;
   } <ocaml field_prefix="ctx_">
