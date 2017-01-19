@@ -4,21 +4,20 @@ OCAMLBUILD= ocamlbuild \
 
 RMLBUILD= rmlbuild \
 		-no-links -classic-display \
-		-libs str \
 		-tags debug,annot,thread
 
 TARGET=native
 
-all: chessbot
+all: bot
 
 # controller: controller.rml.$(TARGET)
 # 	cp _build/controller.rml.$(TARGET) controller
 
-chessbot: chessbot.$(TARGET)
-	cp _build/chessbot.$(TARGET) chessbot
+bot: bot.$(TARGET)
+	cp _build/bot.$(TARGET) bot
 
-chessbot.$(TARGET): wcs_message_t.mli wcs_message_j.mli context_types_t.mli context_types_j.mli FORCE
-	$(OCAMLBUILD) -use-ocamlfind -pkg atdgen -pkg cohttp.lwt -pkg ppx_deriving_yojson chessbot.$(TARGET)
+bot.$(TARGET): wcs_message_t.mli wcs_message_j.mli context_types_t.mli context_types_j.mli FORCE
+	$(RMLBUILD) -use-ocamlfind -pkg atdgen -pkg cohttp.lwt -pkg ppx_deriving_yojson bot.$(TARGET)
 
 wcs_message_t.ml wcs_message_t.mli: wcs_message.atd
 	atdgen -t wcs_message.atd
@@ -41,7 +40,7 @@ clean:
 		context_types_j.ml context_types_j.mli
 
 realclean: clean
-	rm -f *~ chessbot
+	rm -f *~ bot
 
 cleanall: realclean
 

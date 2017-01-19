@@ -7,7 +7,7 @@ let get_value wcs_config
     (workspace_id: string)
     (ctx_init: Yojson.Basic.json)
     (value_of_context: message_response -> 'a option) : 'a =
-  let rec loop ctx input =
+  let rec loop_ ctx input =
     let req_msg =
       { req_input = { cin_text = input };
         req_alternate_intents = false;
@@ -28,10 +28,10 @@ let get_value wcs_config
     | Some v -> v
     | None ->
         let txt = input_line stdin in
-        loop resp.rsp_context txt
+        loop_ resp.rsp_context txt
     end
   in
-  loop ctx_init ""
+  loop_ ctx_init ""
 
 
 let get_figure wcs_config (color: color) ((i, j): int * int) : piece_type =
@@ -111,20 +111,3 @@ let position_of_mask wcs_config (m : mask) =
     cas_b = cas_b;
     en_passant = None; }
 
-
-let main () =
-  let conf = Config.init () in
-  Format.printf "Welcome to chess bot@.";
-  let mask =
-    let m = Array.make_matrix 8 8 None in
-    m.(4).(0) <- Some White;
-    m.(4).(7) <- Some Black;
-    m
-  in
-  print_mask mask;
-  let pos = position_of_mask conf mask in
-  print_board pos.ar;
-  ()
-
-
-let () = main ()

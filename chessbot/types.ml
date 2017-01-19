@@ -1,3 +1,5 @@
+type json = Yojson.Basic.json
+
 type wcs_config = {
     wcs_user: string;
     wcs_password: string;

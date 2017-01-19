@@ -1,0 +1,18 @@
+open Types
+
+let main () =
+  let conf = Config.init () in
+  print_endline "Welcome to chess bot";
+  let mask =
+    let m = Array.make_matrix 8 8 None in
+    m.(4).(0) <- Some White;
+    m.(4).(7) <- Some Black;
+    m
+  in
+  Util.print_mask mask;
+  let pos = Dialog.position_of_mask conf mask in
+  Util.print_board pos.ar;
+  ()
+
+
+let () = main ()
