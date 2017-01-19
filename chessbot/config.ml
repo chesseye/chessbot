@@ -16,6 +16,10 @@ let wcs_workspace_castling_id = ref None
 let set_wcs_workspace_castling_id s =
   wcs_workspace_castling_id := Some s
 
+let wcs_workspace_turn_id = ref None
+let set_wcs_workspace_turn_id s =
+  wcs_workspace_turn_id := Some s
+
 let args =
   Arg.align
     [ ("-wcs-user", Arg.String set_wcs_user,
@@ -26,6 +30,8 @@ let args =
        "workspace Set the Watson Conversation Service workspace id for square questions");
       ("-wcs-workspace-castling", Arg.String set_wcs_workspace_castling_id,
        "workspace Set the Watson Conversation Service workspace id for castling questions");
+      ("-wcs-workspace-turn", Arg.String set_wcs_workspace_turn_id,
+       "workspace Set the Watson Conversation Service workspace id for turn questions");
     ]
 
 let usage = Sys.argv.(0)^" options"
@@ -35,13 +41,18 @@ let anon_args f = ()
 let init () =
   Arg.parse args anon_args usage;
   begin match (!wcs_user, !wcs_password,
-               !wcs_workspace_square_id, !wcs_workspace_castling_id) with
+               !wcs_workspace_square_id,
+               !wcs_workspace_castling_id,
+               !wcs_workspace_turn_id) with
   | Some wcs_user, Some wcs_password,
-    Some wcs_workspace_square_id, Some wcs_workspace_castling_id ->
+    Some wcs_workspace_square_id,
+    Some wcs_workspace_castling_id,
+    Some wcs_workspace_turn_id ->
       {  wcs_user = wcs_user;
          wcs_password = wcs_password;
          wcs_workspace_square_id = wcs_workspace_square_id;
-         wcs_workspace_castling_id = wcs_workspace_castling_id; }
+         wcs_workspace_castling_id = wcs_workspace_castling_id;
+         wcs_workspace_turn_id = wcs_workspace_turn_id; }
   | _ ->
       Format.eprintf "Need all options@.";
       exit 1

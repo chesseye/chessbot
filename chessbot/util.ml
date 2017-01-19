@@ -49,3 +49,29 @@ let get_king (board: board) (c: color) : (int * int) option =
     done
   done;
   !k
+
+
+let piece_chars =
+  [ (King, 'K');
+    (Queen, 'Q');
+    (Rook, 'R');
+    (Bishop, 'B');
+    (Knight, 'N');
+    (Pawn, 'P') ]
+
+let char_of_piece_type pt = List.assoc pt piece_chars
+
+let print_board ar =
+  let separator = "\n   +----+----+----+----+----+----+----+----+\n" in
+  Format.print_string separator;
+  for j = 7 downto 0 do
+    Format.printf " %d |" (j + 1);
+    for i = 0 to 7 do
+      begin match ar.(i).(j) with
+      | Piece(pt, c) -> Format.printf " %c%c |" (if c = White then ' ' else '*') (char_of_piece_type pt)
+      | Empty -> Format.print_string "    |"
+      end
+    done;
+    Format.print_string separator;
+  done;
+  Format.print_string "\n      a    b    c    d    e    f    g    h\n"

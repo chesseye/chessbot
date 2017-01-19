@@ -3,6 +3,7 @@ type wcs_config = {
     wcs_password: string;
     wcs_workspace_square_id: string;
     wcs_workspace_castling_id: string;
+    wcs_workspace_turn_id: string;
   }
 
 type color = Black | White
