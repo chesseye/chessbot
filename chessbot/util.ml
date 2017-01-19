@@ -59,6 +59,11 @@ let piece_chars =
     (Knight, 'N');
     (Pawn, 'P') ]
 
+let char_of_color c =
+  match c with
+  | White -> 'W'
+  | Black -> 'B'
+
 let char_of_piece_type pt = List.assoc pt piece_chars
 
 let print_board ar =
@@ -75,3 +80,17 @@ let print_board ar =
     Format.print_string separator;
   done;
   Format.print_string "\n      a    b    c    d    e    f    g    h\n"
+
+let print_mask m =
+  let separator = "\n   +----+----+----+----+----+----+----+----+\n" in
+  print_string separator;
+  for j = 7 downto 0 do
+    Printf.printf " %d |" (j + 1);
+    for i = 0 to 7 do
+      match m.(i).(j) with
+      | Some c -> Printf.printf "  %c |" (char_of_color c)
+      | None -> print_string "    |"
+    done;
+    print_string separator;
+  done;
+  print_string "\n      a    b    c    d    e    f    g    h\n"

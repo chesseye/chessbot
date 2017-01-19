@@ -19,8 +19,11 @@ let get_value wcs_config
     let resp =
       Rest.message wcs_config workspace_id req_msg
     in
-    Format.printf "Chessbot: %s@."
-      (Wcs_message_j.string_of_c_output resp.rsp_output);
+    (* Format.printf "Chessbot: %s@." *)
+    (*   (Wcs_message_j.string_of_c_output resp.rsp_output); *)
+    List.iter
+      (fun txt -> Format.printf "Chessbot: %s@." txt)
+      resp.rsp_output.cout_text;
     begin match value_of_context resp with
     | Some v -> v
     | None ->
@@ -118,6 +121,7 @@ let main () =
     m.(4).(7) <- Some Black;
     m
   in
+  print_mask mask;
   let pos = position_of_mask conf mask in
   print_board pos.ar;
   ()
