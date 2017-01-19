@@ -902,7 +902,12 @@
         }
       },
       "parent": "Castling rights entrypoint",
-      "context": null,
+      "context": {
+        "castling-rights": [
+          false,
+          false
+        ]
+      },
       "created": "2017-01-18T20:28:32.595Z",
       "updated": "2017-01-18T20:28:32.595Z",
       "metadata": null,
