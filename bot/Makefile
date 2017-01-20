@@ -1,10 +1,24 @@
+CHESSEYE_DIR=../../../chesseye/controller
+
 OCAMLBUILD= ocamlbuild \
 		-no-links -classic-display \
 		-tags debug,annot,thread
 
 RMLBUILD= rmlbuild \
+		-rmlc "rmlc -I $(CHESSEYE_DIR)/_build" \
 		-no-links -classic-display \
-		-tags debug,annot,thread
+		-tags debug,annot,thread \
+		-cflags "-I","$(CHESSEYE_DIR)/_build" \
+		-lflags "-thread","threads.cmxa" \
+		-lflags "-I","`rmlc -where`","rmllib.cmxa" \
+		-lflags "-I","$(CHESSEYE_DIR)/_build" \
+		-lflags "$(CHESSEYE_DIR)/_build/config.cmx" \
+		-lflags "$(CHESSEYE_DIR)/_build/ochess.cmx" \
+		-lflags "$(CHESSEYE_DIR)/_build/fen.cmx" \
+		-lflags "$(CHESSEYE_DIR)/_build/util.cmx" \
+		-lflags "$(CHESSEYE_DIR)/_build/dmov_map.cmx" \
+		-lflags "$(CHESSEYE_DIR)/_build/bridge.cmx" \
+		-lflags "$(CHESSEYE_DIR)/_build/controller_core.cmx"
 
 TARGET=native
 

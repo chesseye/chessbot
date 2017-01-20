@@ -15,4 +15,7 @@ let main () =
   ()
 
 
-let () = main ()
+let () = run Controller_core.main
+
+(* let () = main () *)
+
