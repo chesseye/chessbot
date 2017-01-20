@@ -8,24 +8,24 @@ type wcs_config = {
     wcs_workspace_turn_id: string;
   }
 
-type color = Black | White
+(* type color = Black | White *)
 
-type piece_type = King | Queen | Rook | Bishop | Knight | Pawn
+(* type piece_type = King | Queen | Rook | Bishop | Knight | Pawn *)
 
-type piece = piece_type * color
+(* type piece = piece_type * color *)
 
-type field = Piece of piece | Empty
+(* type field = Piece of piece | Empty *)
 
-type can_castle = bool * bool
+(* type can_castle = bool * bool *)
 
-type board = field array array
+(* type board = field array array *)
 
-type position = {
-    ar: board;
-    turn: color;
-    cas_w : can_castle; cas_b : can_castle;
-    en_passant : int option;
-  }
+(* type position = { *)
+(*     ar: board; *)
+(*     turn: color; *)
+(*     cas_w : can_castle; cas_b : can_castle; *)
+(*     en_passant : int option; *)
+(*   } *)
 
-type mask = color option array array
+(* type mask = color option array array *)
 

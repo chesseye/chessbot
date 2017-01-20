@@ -1,6 +1,7 @@
 open Wcs_message_t
 open Context_types_t
 open Util_bot
+open Types
 open Types_bot
 
 let get_value wcs_config
@@ -109,5 +110,19 @@ let position_of_mask wcs_config (m : mask) =
     turn = turn;
     cas_w = cas_w;
     cas_b = cas_b;
-    en_passant = None; }
+    en_passant = None;
+    prev = None;
+    irr_change = 0;
+    king_w =
+      begin match get_king board White with
+      | None -> (0,0)
+      | Some p -> p
+      end;
+    king_b =
+      begin match get_king board Black with
+      | None -> (7,7)
+      | Some p -> p
+      end;
+    number = 42;
+    eval = 0; }
 

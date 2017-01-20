@@ -1,4 +1,5 @@
 open Context_types_t
+open Types
 open Types_bot
 
 val string_of_square : int * int -> string

@@ -1,3 +1,5 @@
 open Types_bot
 
-val init : unit -> wcs_config
+val options : (Arg.key * Arg.spec * Arg.doc) list
+
+val get : unit ->  wcs_config

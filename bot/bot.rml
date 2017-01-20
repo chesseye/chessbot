@@ -1,7 +1,17 @@
+open Types
 open Types_bot
 
+
+let init () =
+  let usage = Sys.argv.(0)^" options" in
+  let args =
+    Arg.align
+      (Config.options @ Config_bot.options)
+  in
+  Arg.parse args (fun _ -> ()) usage
+
 let main () =
-  let conf = Config_bot.init () in
+  let conf = Config_bot.get () in
   print_endline "Welcome to chess bot";
   let mask =
     let m = Array.make_matrix 8 8 None in
@@ -12,10 +22,16 @@ let main () =
   Util_bot.print_mask mask;
   let pos = Dialog.position_of_mask conf mask in
   Util_bot.print_board pos.ar;
-  ()
+  pos
 
 
-let () = run Controller_core.main
 
-(* let () = main () *)
+let () =
+  init ();
+  let pos_init = main () in
+  begin
+    pause; pause; pause; pause; emit Controller_core.reset pos_init
+    ||
+    run Controller_core.main
+  end
 

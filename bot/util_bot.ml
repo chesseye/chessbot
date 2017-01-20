@@ -1,3 +1,4 @@
+open Types
 open Types_bot
 
 let string_of_square (i,j) =

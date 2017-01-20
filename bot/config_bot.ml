@@ -20,26 +20,21 @@ let wcs_workspace_turn_id = ref None
 let set_wcs_workspace_turn_id s =
   wcs_workspace_turn_id := Some s
 
-let args =
-  Arg.align
-    [ ("-wcs-user", Arg.String set_wcs_user,
-       "username Set the Watson Conversation Service user name");
-      ("-wcs-passwd", Arg.String set_wcs_passwd,
-       "password Set the Watson Conversation Service password");
-      ("-wcs-workspace-square", Arg.String set_wcs_workspace_square_id,
-       "workspace Set the Watson Conversation Service workspace id for square questions");
-      ("-wcs-workspace-castling", Arg.String set_wcs_workspace_castling_id,
-       "workspace Set the Watson Conversation Service workspace id for castling questions");
-      ("-wcs-workspace-turn", Arg.String set_wcs_workspace_turn_id,
-       "workspace Set the Watson Conversation Service workspace id for turn questions");
-    ]
+let options =
+  [ ("-wcs-user", Arg.String set_wcs_user,
+     "username Set the Watson Conversation Service user name");
+    ("-wcs-passwd", Arg.String set_wcs_passwd,
+     "password Set the Watson Conversation Service password");
+    ("-wcs-workspace-square", Arg.String set_wcs_workspace_square_id,
+     "workspace Set the Watson Conversation Service workspace id for square questions");
+    ("-wcs-workspace-castling", Arg.String set_wcs_workspace_castling_id,
+     "workspace Set the Watson Conversation Service workspace id for castling questions");
+    ("-wcs-workspace-turn", Arg.String set_wcs_workspace_turn_id,
+     "workspace Set the Watson Conversation Service workspace id for turn questions");
+  ]
 
-let usage = Sys.argv.(0)^" options"
-
-let anon_args f = ()
-
-let init () =
-  Arg.parse args anon_args usage;
+(* Must be called after Arg.parse. *)
+let get () =
   begin match (!wcs_user, !wcs_password,
                !wcs_workspace_square_id,
                !wcs_workspace_castling_id,
