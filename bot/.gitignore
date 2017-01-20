@@ -4,4 +4,4 @@ context_types_j.ml*
 context_types_t.ml*
 wcs_message_t.ml*
 wcs_message_j.ml*
-chessbot
+bot

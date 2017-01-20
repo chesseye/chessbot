@@ -1,4 +1,4 @@
-open Types
+open Types_bot
 
 let wcs_user = ref None
 let set_wcs_user s =

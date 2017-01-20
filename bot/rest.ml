@@ -1,4 +1,4 @@
-open Types
+open Types_bot
 open Lwt
 open Wcs_message_t
 

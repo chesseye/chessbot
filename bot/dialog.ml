@@ -1,7 +1,7 @@
 open Wcs_message_t
 open Context_types_t
-open Util
-open Types
+open Util_bot
+open Types_bot
 
 let get_value wcs_config
     (workspace_id: string)

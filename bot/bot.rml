@@ -1,7 +1,7 @@
-open Types
+open Types_bot
 
 let main () =
-  let conf = Config.init () in
+  let conf = Config_bot.init () in
   print_endline "Welcome to chess bot";
   let mask =
     let m = Array.make_matrix 8 8 None in
@@ -9,9 +9,9 @@ let main () =
     m.(4).(7) <- Some Black;
     m
   in
-  Util.print_mask mask;
+  Util_bot.print_mask mask;
   let pos = Dialog.position_of_mask conf mask in
-  Util.print_board pos.ar;
+  Util_bot.print_board pos.ar;
   ()
 
 
