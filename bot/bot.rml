@@ -30,7 +30,9 @@ let () =
   init ();
   let pos_init = main () in
   begin
-    pause; pause; pause; pause; emit Controller_core.reset pos_init
+    pause; pause; pause; pause;
+    emit Controller_core.position (Undo, pos_init);
+    emit Controller_core.reset pos_init
     ||
     run Controller_core.main
   end
