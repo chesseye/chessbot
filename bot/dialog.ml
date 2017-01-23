@@ -6,7 +6,7 @@ open Types_bot
 
 let get_value wcs_config
     (workspace_id: string)
-    (ctx_init: Yojson.Basic.json)
+    (ctx_init: json)
     (value_of_context: message_response -> 'a option) : 'a =
   let rec loop_ ctx input =
     let req_msg =

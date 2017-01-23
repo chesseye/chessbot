@@ -10,7 +10,7 @@ let string_of_color c =
   | Black -> "black"
   end
 
-let context_of_json json =
+let context_of_json (json: json) =
   begin try
     Some (Context_types_j.context_of_string (Yojson.Basic.to_string json))
   with _ ->
