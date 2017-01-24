@@ -1,4 +1,4 @@
-type json <ocaml module="Yojson.Basic"> = abstract
+type json <ocaml module="Types_bot"> = abstract
 
 type c_input = {
     text : string;

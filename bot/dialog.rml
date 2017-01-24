@@ -23,7 +23,7 @@ let get_value wcs_config
     (* Format.printf "Chessbot: %s@." *)
     (*   (Wcs_message_j.string_of_c_output resp.rsp_output); *)
     List.iter
-      (fun txt -> Format.printf "Chessbot: %s@." txt)
+      (fun txt -> print_endline ("Chessbot: " ^ txt))
       resp.rsp_output.cout_text;
     begin match value_of_context resp with
     | Some v -> v
@@ -37,8 +37,9 @@ let get_value wcs_config
 
 let get_figure wcs_config (color: color) ((i, j): int * int) : piece_type =
   let ctx =
-    `Assoc [ ("square", `String (string_of_square (i, j)));
-             ("color", `String (string_of_color color)); ]
+    json_of_string
+      ("{ \"square\": \""^(string_of_square (i, j))^"\", "^
+       "  \"color\" : \""^(string_of_color color)^"\" }")
   in
   let figure_of_resp resp =
     begin match context_of_json resp.rsp_context with
@@ -52,7 +53,8 @@ let get_figure wcs_config (color: color) ((i, j): int * int) : piece_type =
 
 let get_casling_rights wcs_config (color: color) : (bool * bool) =
   let ctx =
-    `Assoc [ ("color", `String (string_of_color color)); ]
+    json_of_string
+      ("{ \"color\" : \""^(string_of_color color)^"\" }")
   in
   let castling_of_resp resp =
     begin match context_of_json resp.rsp_context with
@@ -65,7 +67,7 @@ let get_casling_rights wcs_config (color: color) : (bool * bool) =
     ctx castling_of_resp
 
 let get_turn wcs_config : color =
-  let ctx = `Null in
+  let ctx = json_of_string "null" in
   let turn_of_resp resp =
     begin match context_of_json resp.rsp_context with
     | Some { ctx_color = Some c } ->

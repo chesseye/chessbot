@@ -1,6 +1,9 @@
 open Types
 open Types_bot
 
+let json_of_string (s: string) : json =
+  Yojson.Basic.from_string s
+
 let string_of_square (i,j) =
   Format.sprintf "(%d, %d)" i j
 

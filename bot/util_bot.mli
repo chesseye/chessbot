@@ -2,6 +2,8 @@ open Context_types_t
 open Types
 open Types_bot
 
+val json_of_string : string -> json
+
 val string_of_square : int * int -> string
 
 val string_of_color : color -> string
