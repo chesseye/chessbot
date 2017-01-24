@@ -10,7 +10,7 @@ let init () =
   in
   Arg.parse args (fun _ -> ()) usage
 
-let main () =
+let process main =
   let conf = Config_bot.get () in
   print_endline "Welcome to chess bot";
   let mask =
@@ -20,7 +20,7 @@ let main () =
     m
   in
   Util_bot.print_mask mask;
-  let pos = Dialog.position_of_mask conf mask in
+  let pos = run Dialog.position_of_mask conf mask in
   Util_bot.print_board pos.ar;
   pos
 
@@ -28,7 +28,7 @@ let main () =
 
 let () =
   init ();
-  let pos_init = main () in
+  let pos_init = run main in
   begin
     pause; pause; pause; pause;
     emit Controller_core.position (Undo, pos_init);
