@@ -10,29 +10,35 @@ let init () =
   in
   Arg.parse args (fun _ -> ()) usage
 
-let process main text =
+let process main text mask position reset =
   let conf = Config_bot.get () in
   print_endline "Welcome to chess bot";
-  let mask =
-    let m = Array.make_matrix 8 8 None in
-    m.(4).(0) <- Some White;
-    m.(4).(7) <- Some Black;
-    m
-  in
-  Util_bot.print_mask mask;
-  let pos = run Dialog.position_of_mask conf text mask in
-  Util_bot.print_board pos.ar;
-  pos
-
-
+  loop
+    let intent = run Dialog.get_intent conf text in
+    begin match intent with
+    | Intent_setup_position ->
+        await mask(Some m) in
+        let pos_init = run Dialog.position_of_mask conf text m in
+        emit position (Undo, pos_init);
+        emit reset pos_init
+    | Intent_undo ->
+        print_endline "Undo not implemented"; (* XXX TODO XXX *)
+        pause
+    | Intent_resign ->
+        print_endline "Resign not implemented"; (* XXX TODO XXX *)
+        pause
+    end
+  end
 
 let () =
   init ();
   begin
     run Controller_core.main
     ||
-    let pos_init = run main Controller_core.text in
-    emit Controller_core.position (Undo, pos_init);
-    emit Controller_core.reset pos_init
+    run main
+      Controller_core.text
+      Controller_core.mask
+      Controller_core.position
+      Controller_core.reset
   end
 

@@ -42,6 +42,13 @@ let figure_of_string figure =
       Pawn
   end
 
+let intent_dispatch_of_string s =
+  begin match s with
+  | "setup_position" -> Intent_setup_position
+  | "undo" -> Intent_undo
+  | "resign" -> Intent_resign
+  end
+
 let get_king (board: board) (c: color) : (int * int) option =
   let k = ref None in
   for i = 0 to 7 do

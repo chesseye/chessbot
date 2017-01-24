@@ -14,6 +14,8 @@ val color_of_string : string -> color
 
 val figure_of_string : string -> piece_type
 
+val intent_dispatch_of_string : string -> intent_dispatch
+
 val get_king : board -> color -> (int * int) option
 
 val char_of_color : color -> char

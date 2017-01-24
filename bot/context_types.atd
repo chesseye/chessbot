@@ -3,4 +3,5 @@ type context = {
     ?figure : string option;
     ?castling_rights <json name="castling-rights"> : bool list option;
     ?color : string option;
+    ?dispatch : string option;
   } <ocaml field_prefix="ctx_">
