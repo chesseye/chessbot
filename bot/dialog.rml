@@ -6,8 +6,10 @@ open Types_bot
 
 let process get_value wcs_config
     (workspace_id: string)
+    (text: ('b, string) event)
     (ctx_init: json)
-    (value_of_context: message_response -> 'a option) : 'a process =
+    (value_of_context: message_response -> 'a option)
+    : 'a process =
   let rec process loop_ ctx input =
     let req_msg =
       { req_input = { cin_text = input };
@@ -28,15 +30,14 @@ let process get_value wcs_config
     begin match value_of_context resp with
     | Some v -> v
     | None ->
-        let txt = run Rml_async.proc_of_fun input_line stdin in
-        pause;
+        await text(txt) in
         run loop_ resp.rsp_context txt
     end
   in
   run loop_ ctx_init ""
 
 
-let process get_figure wcs_config (color: color) ((i, j): int * int) : piece_type process =
+let process get_figure wcs_config text (color: color) ((i, j): int * int) : piece_type process =
   let ctx =
     json_of_string
       ("{ \"square\": \""^(string_of_square (i, j))^"\", "^
@@ -49,10 +50,11 @@ let process get_figure wcs_config (color: color) ((i, j): int * int) : piece_typ
     | _ -> None
     end
   in
-  run get_value wcs_config wcs_config.wcs_workspace_square_id ctx figure_of_resp
+  run get_value wcs_config wcs_config.wcs_workspace_square_id text
+    ctx figure_of_resp
 
 
-let process get_casling_rights wcs_config (color: color) =
+let process get_casling_rights wcs_config text (color: color) =
   let ctx =
     json_of_string
       ("{ \"color\" : \""^(string_of_color color)^"\" }")
@@ -64,10 +66,10 @@ let process get_casling_rights wcs_config (color: color) =
     | _ -> None
     end
   in
-  run get_value wcs_config wcs_config.wcs_workspace_castling_id
+  run get_value wcs_config wcs_config.wcs_workspace_castling_id text
     ctx castling_of_resp
 
-let process get_turn wcs_config : color process =
+let process get_turn wcs_config text : color process =
   let ctx = json_of_string "null" in
   let turn_of_resp resp =
     begin match context_of_json resp.rsp_context with
@@ -76,17 +78,18 @@ let process get_turn wcs_config : color process =
     | _ -> None
     end
   in
-  run get_value wcs_config wcs_config.wcs_workspace_turn_id ctx turn_of_resp
+  run get_value wcs_config wcs_config.wcs_workspace_turn_id text
+    ctx turn_of_resp
 
 
-let process position_of_mask wcs_config (m : mask) =
+let process position_of_mask wcs_config text (m : mask) =
   let board =
     let board = Array.make_matrix 8 8 Empty in
     for i = 0 to 7 do
       for j = 0 to 7 do
         begin match m.(i).(j) with
         | Some c ->
-            let f = run get_figure wcs_config c (i, j) in
+            let f = run get_figure wcs_config text c (i, j) in
             board.(i).(j) <- Piece (f, c)
         | None -> ()
         end
@@ -96,18 +99,18 @@ let process position_of_mask wcs_config (m : mask) =
   in
   let cas_w =
     begin match get_king board White with
-    | Some ij when ij = (4, 0) -> run get_casling_rights wcs_config White
+    | Some ij when ij = (4, 0) -> run get_casling_rights wcs_config text White
     | _ -> (false, false)
     end
   in
   let cas_b =
     begin match get_king board Black with
-    | Some ij when ij = (4, 7) -> run get_casling_rights wcs_config Black
+    | Some ij when ij = (4, 7) -> run get_casling_rights wcs_config text Black
     | _ -> (false, false)
     end
   in
   let turn =
-    run get_turn wcs_config
+    run get_turn wcs_config text
   in
   { ar = board;
     turn = turn;
