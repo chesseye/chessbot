@@ -5,3 +5,4 @@ context_types_t.ml*
 wcs_message_t.ml*
 wcs_message_j.ml*
 bot
+text2text

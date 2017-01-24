@@ -22,7 +22,7 @@ RMLBUILD= rmlbuild \
 
 TARGET=native
 
-all: bot
+all: bot text2text
 
 # controller: controller.rml.$(TARGET)
 # 	cp _build/controller.rml.$(TARGET) controller
@@ -32,6 +32,12 @@ bot: bot.$(TARGET)
 
 bot.$(TARGET): wcs_message_t.mli wcs_message_j.mli context_types_t.mli context_types_j.mli FORCE
 	$(RMLBUILD) -use-ocamlfind -pkg atdgen -pkg cohttp.lwt -pkg ppx_deriving_yojson bot.$(TARGET)
+
+text2text: text2text.$(TARGET)
+	cp _build/text2text.$(TARGET) text2text
+
+text2text.$(TARGET): FORCE
+	$(OCAMLBUILD) text2text.$(TARGET)
 
 wcs_message_t.ml wcs_message_t.mli: wcs_message.atd
 	atdgen -t wcs_message.atd
