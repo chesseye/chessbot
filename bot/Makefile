@@ -60,7 +60,7 @@ clean:
 		context_types_j.ml context_types_j.mli
 
 realclean: clean
-	rm -f *~ bot
+	rm -f *~ bot text2text
 
 cleanall: realclean
 
