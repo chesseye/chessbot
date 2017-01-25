@@ -9,6 +9,7 @@ type wcs_config = {
     wcs_workspace_castling_id : string;
     wcs_workspace_turn_id : string;
     wcs_workspace_intent_dispatch_id : string;
+    wcs_workspace_piece_id : string;
   }
 
 type intent_dispatch =

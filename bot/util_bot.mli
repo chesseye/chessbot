@@ -8,6 +8,10 @@ val string_of_square : int * int -> string
 
 val string_of_color : color -> string
 
+val string_of_figure : piece_type -> string
+
+val context_add_string : json -> string -> string -> json
+
 val context_of_json : json -> context option
 
 val color_of_string : string -> color

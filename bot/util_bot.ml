@@ -26,11 +26,30 @@ let string_of_color c =
   | Black -> "black"
   end
 
+let string_of_figure figure =
+  begin match figure with
+  | Bishop -> "bishop"
+  | King -> "king"
+  | Pawn -> "pawn"
+  | Queen -> "queen"
+  | Knight -> "knight"
+  | Rook -> "rook"
+  end
+
 let context_of_json (json: json) =
+  (* Format.eprintf "DEBUG: %s@." (Yojson.Basic.to_string json); *)
   begin try
     Some (Context_types_j.context_of_string (Yojson.Basic.to_string json))
   with _ ->
     None
+  end
+
+let context_add_string (ctx: json) key value =
+  begin match ctx with
+  | `Assoc l ->
+      let l = List.remove_assoc key l in
+      `Assoc ((key, `String value) :: l)
+  | _ -> assert false
   end
 
 let color_of_string color =

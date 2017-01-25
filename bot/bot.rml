@@ -16,11 +16,17 @@ let process main text mask position reset =
   loop
     let intent = run Dialog.get_intent conf text in
     begin match intent with
+    (* | Intent_setup_position -> *)
+    (*     await mask(Some m) in *)
+    (*     let pos_init = run Dialog.position_of_mask conf text m in *)
+    (*     emit position (Undo, pos_init); *)
+    (*     emit reset pos_init *)
     | Intent_setup_position ->
-        await mask(Some m) in
-        let pos_init = run Dialog.position_of_mask conf text m in
+        let pos_init = Fen.position_of_fen "4k3/8/8/8/8/8/8/4K3 w - - 0 42" in
+        run Dialog.mask_of_position conf text mask pos_init.ar;
         emit position (Undo, pos_init);
-        emit reset pos_init
+        emit reset pos_init;
+        pause
     | Intent_undo ->
         print_endline "Undo not implemented"; (* XXX TODO XXX *)
         pause

@@ -147,3 +147,73 @@ let process get_intent wcs_config text : intent_dispatch process =
   run get_value wcs_config wcs_config.wcs_workspace_intent_dispatch_id text
     ctx txt turn_of_resp
 
+
+let rec process await_new_mask_diff mask m_init prev_diff =
+  await mask (Some m) in
+  begin match Util.diff_mask m_init m with
+  | [ (square, None, Some c) ] as diff ->
+      if diff = prev_diff then
+        run await_new_mask_diff mask m_init prev_diff
+      else
+        (square, c)
+  | _ -> run await_new_mask_diff mask m_init prev_diff
+  end
+
+let process get_piece wcs_config text mask m_init piece square =
+  let rec process loop_ ctx input prev_diff =
+    let req_msg =
+      { req_input = { cin_text = input };
+        req_alternate_intents = false;
+        req_context = Some ctx;
+        req_entities = None;
+        req_intents = None;
+        req_output = None; }
+    in
+    let resp =
+      run Rml_async.proc_of_fun
+        (Rest.message wcs_config wcs_config.wcs_workspace_piece_id)
+        req_msg
+    in
+    List.iter
+      (fun txt -> print_endline ("Chessbot: " ^ txt))
+      resp.rsp_output.cout_text;
+    begin match context_of_json resp.rsp_context with
+    | Some { ctx_filled = Some _ } -> ()
+    | _ ->
+        do
+          let square, color = run await_new_mask_diff mask m_init prev_diff in
+          let ctx = resp.rsp_context in
+          let ctx =
+            context_add_string ctx "m_color" (string_of_color color)
+          in
+          let ctx =
+            context_add_string ctx "m_square" (string_of_square square)
+          in
+          run loop_ ctx "" [ (square, None, Some color) ]
+        until
+        | text(txt) -> run loop_ resp.rsp_context txt prev_diff
+        done
+    end
+  in
+  let ctx_init =
+    let figure, color = piece in
+    json_of_string
+      ("{ \"square\": \""^(string_of_square square)^"\", "^
+       "  \"figure\": \""^(string_of_figure figure)^"\", "^
+       "  \"color\" : \""^(string_of_color color)^"\" }")
+  in
+  run loop_ ctx_init "" []
+
+let process mask_of_position wcs_config text mask pos =
+  print_endline "Chessbot: The chessboard must be empty.";
+  let m = Array.make_matrix 8 8 None in
+  for i = 0 to 7 do
+    for j = 0 to 7 do
+      begin match pos.(i).(j) with
+      | Piece (figure, color) ->
+          run get_piece  wcs_config text mask m (figure, color) (i, j);
+          m.(i).(j) <- Some color
+      | Empty -> ()
+      end
+    done
+  done
