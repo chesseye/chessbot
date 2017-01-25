@@ -36,7 +36,7 @@
       "description": null
     }
   ],
-  "updated": "2017-01-25T15:43:11.947Z",
+  "updated": "2017-01-25T22:52:39.999Z",
   "entities": [],
   "language": "en",
   "metadata": null,
@@ -96,6 +96,21 @@
     {
       "go_to": null,
       "output": {
+        "text": { "values": [ "Okay" ], "selection_policy": "sequential" }
+      },
+      "parent": "Say piece",
+      "context": { "filled": "$square" },
+      "created": "2017-01-25T14:57:06.118Z",
+      "updated": "2017-01-25T22:52:39.999Z",
+      "metadata": null,
+      "conditions": "$color == $m_color && $square == $m_square",
+      "description": null,
+      "dialog_node": "Correct color and square",
+      "previous_sibling": null
+    },
+    {
+      "go_to": null,
+      "output": {
         "text": {
           "values": [ "Put a $color $figure in $square." ],
           "selection_policy": "sequential"
@@ -109,22 +124,6 @@
       "conditions": "$color && $figure && $square",
       "description": null,
       "dialog_node": "Say piece",
-      "previous_sibling": null
-    },
-    {
-      "go_to": null,
-      "output": {
-        "text": { "values": [ "Okay" ], "selection_policy": "sequential" },
-        "context": { "filled": "$square" }
-      },
-      "parent": "Say piece",
-      "context": null,
-      "created": "2017-01-25T14:57:06.118Z",
-      "updated": "2017-01-25T15:33:35.934Z",
-      "metadata": null,
-      "conditions": "$color == $m_color && $square == $m_square",
-      "description": null,
-      "dialog_node": "Correct color and square",
       "previous_sibling": null
     },
     {
