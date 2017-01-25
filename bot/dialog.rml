@@ -8,6 +8,7 @@ let process get_value wcs_config
     (workspace_id: string)
     (text: ('b, string) event)
     (ctx_init: json)
+    (txt_init: string)
     (value_of_context: message_response -> 'a option)
     : 'a process =
   let rec process loop_ ctx input =
@@ -34,7 +35,7 @@ let process get_value wcs_config
         run loop_ resp.rsp_context txt
     end
   in
-  run loop_ ctx_init ""
+  run loop_ ctx_init txt_init
 
 
 let process get_figure wcs_config text (color: color) ((i, j): int * int) : piece_type process =
@@ -51,7 +52,7 @@ let process get_figure wcs_config text (color: color) ((i, j): int * int) : piec
     end
   in
   run get_value wcs_config wcs_config.wcs_workspace_square_id text
-    ctx figure_of_resp
+    ctx "" figure_of_resp
 
 
 let process get_casling_rights wcs_config text (color: color) =
@@ -67,7 +68,7 @@ let process get_casling_rights wcs_config text (color: color) =
     end
   in
   run get_value wcs_config wcs_config.wcs_workspace_castling_id text
-    ctx castling_of_resp
+    ctx "" castling_of_resp
 
 let process get_turn wcs_config text : color process =
   let ctx = json_of_string "null" in
@@ -79,7 +80,7 @@ let process get_turn wcs_config text : color process =
     end
   in
   run get_value wcs_config wcs_config.wcs_workspace_turn_id text
-    ctx turn_of_resp
+    ctx "" turn_of_resp
 
 
 let process position_of_mask wcs_config text (m : mask) =
@@ -142,5 +143,7 @@ let process get_intent wcs_config text : intent_dispatch process =
     | _ -> None
     end
   in
+  await text(txt) in
   run get_value wcs_config wcs_config.wcs_workspace_intent_dispatch_id text
-    ctx turn_of_resp
+    ctx txt turn_of_resp
+

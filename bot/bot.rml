@@ -12,7 +12,7 @@ let init () =
 
 let process main text mask position reset =
   let conf = Config_bot.get () in
-  print_endline "Welcome to chess bot";
+  print_endline "The ChessBot is running";
   loop
     let intent = run Dialog.get_intent conf text in
     begin match intent with
