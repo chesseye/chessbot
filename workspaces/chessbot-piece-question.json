@@ -1,1 +1,262 @@
-{"name":"chessbot piece question","created":"2017-01-25T14:55:05.078Z","intents":[{"intent":"repeat","created":"2017-01-25T15:01:58.428Z","updated":"2017-01-25T15:03:13.854Z","examples":[{"text":"Can you repeat","created":"2017-01-25T15:02:11.754Z","updated":"2017-01-25T15:02:11.754Z"},{"text":"repeat pleae","created":"2017-01-25T15:03:13.854Z","updated":"2017-01-25T15:03:13.854Z"},{"text":"Say it again","created":"2017-01-25T15:02:23.664Z","updated":"2017-01-25T15:02:23.664Z"},{"text":"what did you say?","created":"2017-01-25T15:02:38.579Z","updated":"2017-01-25T15:02:38.579Z"},{"text":"Which piece?","created":"2017-01-25T15:02:57.633Z","updated":"2017-01-25T15:02:57.633Z"}],"description":null}],"updated":"2017-01-25T15:43:11.947Z","entities":[],"language":"en","metadata":null,"description":null,"dialog_nodes":[{"go_to":null,"output":{},"parent":null,"context":null,"created":"2017-01-25T15:37:33.251Z","updated":"2017-01-25T15:41:51.984Z","metadata":null,"conditions":"$color && $figure && $squares","description":null,"dialog_node":"Say pieces","previous_sibling":"Say piece"},{"go_to":null,"output":{"text":{"values":["Internal error: color, figure and square variables must be defined."],"selection_policy":"sequential"}},"parent":null,"context":null,"created":"2017-01-25T14:55:31.510Z","updated":"2017-01-25T15:06:09.929Z","metadata":null,"conditions":"anything_else","description":null,"dialog_node":"Error","previous_sibling":"Say pieces"},{"go_to":null,"output":{"text":{"values":["Multiple pieces placement: not yet implemented!"],"selection_policy":"sequential"}},"parent":"Say pieces","context":null,"created":"2017-01-25T15:41:56.709Z","updated":"2017-01-25T15:42:52.842Z","metadata":null,"conditions":"true","description":null,"dialog_node":"TODO","previous_sibling":null},{"go_to":null,"output":{"text":{"values":["Put a $color $figure in $square."],"selection_policy":"sequential"}},"parent":null,"context":null,"created":"2017-01-25T14:55:10.830Z","updated":"2017-01-25T15:04:53.227Z","metadata":null,"conditions":"$color && $figure && $square","description":null,"dialog_node":"Say piece","previous_sibling":null},{"go_to":null,"output":{"text":{"values":["Okay"],"selection_policy":"sequential"},"context":{"filled":"$square"}},"parent":"Say piece","context":null,"created":"2017-01-25T14:57:06.118Z","updated":"2017-01-25T15:33:35.934Z","metadata":null,"conditions":"$color == $m_color && $square == $m_square","description":null,"dialog_node":"Correct color and square","previous_sibling":null},{"go_to":{"return":null,"selector":"body","dialog_node":"Say piece"},"output":{"text":{"values":[""],"selection_policy":"sequential"}},"parent":"Say piece","context":null,"created":"2017-01-25T15:00:16.115Z","updated":"2017-01-25T15:21:14.782Z","metadata":null,"conditions":"#repeat","description":null,"dialog_node":"Repeat","previous_sibling":"Correct color and square"},{"go_to":{"return":null,"selector":"user_input","dialog_node":"Correct color and square"},"output":{"text":{"values":["No, you have to put a $color $figure in $square."],"selection_policy":"sequential"}},"parent":"Say piece","context":null,"created":"2017-01-25T15:30:05.075Z","updated":"2017-01-25T15:33:07.644Z","metadata":null,"conditions":"$color != $m_color && $square != $m_square","description":null,"dialog_node":"Wrong color and square","previous_sibling":"Wrong color"},{"go_to":{"return":null,"selector":"user_input","dialog_node":"Correct color and square"},"output":{"text":{"values":["Not in $m_square! It has to be in $square.","You have to put the $figure in $square."],"selection_policy":"random"}},"parent":"Say piece","context":null,"created":"2017-01-25T15:11:17.421Z","updated":"2017-01-25T15:25:11.864Z","metadata":null,"conditions":"$color == $m_color && $square != $m_square","description":null,"dialog_node":"Wrong square","previous_sibling":"Repeat"},{"go_to":{"return":null,"selector":"user_input","dialog_node":"Correct color and square"},"output":{"text":{"values":["It has to be a $color $figure.","I said a $color piece.","Not a $m_color piece, a $color one."],"selection_policy":"sequential"}},"parent":"Say piece","context":null,"created":"2017-01-25T15:22:03.466Z","updated":"2017-01-25T15:43:11.947Z","metadata":null,"conditions":"$color != $m_color && $square == $m_square","description":null,"dialog_node":"Wrong color","previous_sibling":"Wrong square"},{"type":"response_condition","go_to":null,"output":{"text":{"values":["Put the $color $figure in $squares."],"selection_policy":"sequential"}},"parent":"Say pieces","context":null,"created":"2017-01-25T15:40:52.038Z","updated":"2017-01-25T15:41:25.079Z","metadata":null,"conditions":null,"description":null,"dialog_node":"node_11_1485358851746","previous_sibling":"node_10_1485358745221"},{"type":"response_condition","go_to":null,"output":{"text":{"values":["Put the $color pawns in $squares."],"selection_policy":"sequential"}},"parent":"Say pieces","context":null,"created":"2017-01-25T15:39:05.617Z","updated":"2017-01-25T15:41:10.356Z","metadata":null,"conditions":" $figure == pawn","description":null,"dialog_node":"node_10_1485358745221","previous_sibling":"TODO"}],"workspace_id":"00432d71-5aa0-4345-8850-48f93d0ea5f8","counterexamples":[]}
+{
+  "name": "chessbot piece question",
+  "created": "2017-01-25T14:55:05.078Z",
+  "intents": [
+    {
+      "intent": "repeat",
+      "created": "2017-01-25T15:01:58.428Z",
+      "updated": "2017-01-25T15:03:13.854Z",
+      "examples": [
+        {
+          "text": "Can you repeat",
+          "created": "2017-01-25T15:02:11.754Z",
+          "updated": "2017-01-25T15:02:11.754Z"
+        },
+        {
+          "text": "repeat pleae",
+          "created": "2017-01-25T15:03:13.854Z",
+          "updated": "2017-01-25T15:03:13.854Z"
+        },
+        {
+          "text": "Say it again",
+          "created": "2017-01-25T15:02:23.664Z",
+          "updated": "2017-01-25T15:02:23.664Z"
+        },
+        {
+          "text": "what did you say?",
+          "created": "2017-01-25T15:02:38.579Z",
+          "updated": "2017-01-25T15:02:38.579Z"
+        },
+        {
+          "text": "Which piece?",
+          "created": "2017-01-25T15:02:57.633Z",
+          "updated": "2017-01-25T15:02:57.633Z"
+        }
+      ],
+      "description": null
+    }
+  ],
+  "updated": "2017-01-25T15:43:11.947Z",
+  "entities": [],
+  "language": "en",
+  "metadata": null,
+  "description": null,
+  "dialog_nodes": [
+    {
+      "go_to": null,
+      "output": {},
+      "parent": null,
+      "context": null,
+      "created": "2017-01-25T15:37:33.251Z",
+      "updated": "2017-01-25T15:41:51.984Z",
+      "metadata": null,
+      "conditions": "$color && $figure && $squares",
+      "description": null,
+      "dialog_node": "Say pieces",
+      "previous_sibling": "Say piece"
+    },
+    {
+      "go_to": null,
+      "output": {
+        "text": {
+          "values": [
+            "Internal error: color, figure and square variables must be defined."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": null,
+      "context": null,
+      "created": "2017-01-25T14:55:31.510Z",
+      "updated": "2017-01-25T15:06:09.929Z",
+      "metadata": null,
+      "conditions": "anything_else",
+      "description": null,
+      "dialog_node": "Error",
+      "previous_sibling": "Say pieces"
+    },
+    {
+      "go_to": null,
+      "output": {
+        "text": {
+          "values": [ "Multiple pieces placement: not yet implemented!" ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Say pieces",
+      "context": null,
+      "created": "2017-01-25T15:41:56.709Z",
+      "updated": "2017-01-25T15:42:52.842Z",
+      "metadata": null,
+      "conditions": "true",
+      "description": null,
+      "dialog_node": "TODO",
+      "previous_sibling": null
+    },
+    {
+      "go_to": null,
+      "output": {
+        "text": {
+          "values": [ "Put a $color $figure in $square." ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": null,
+      "context": null,
+      "created": "2017-01-25T14:55:10.830Z",
+      "updated": "2017-01-25T15:04:53.227Z",
+      "metadata": null,
+      "conditions": "$color && $figure && $square",
+      "description": null,
+      "dialog_node": "Say piece",
+      "previous_sibling": null
+    },
+    {
+      "go_to": null,
+      "output": {
+        "text": { "values": [ "Okay" ], "selection_policy": "sequential" },
+        "context": { "filled": "$square" }
+      },
+      "parent": "Say piece",
+      "context": null,
+      "created": "2017-01-25T14:57:06.118Z",
+      "updated": "2017-01-25T15:33:35.934Z",
+      "metadata": null,
+      "conditions": "$color == $m_color && $square == $m_square",
+      "description": null,
+      "dialog_node": "Correct color and square",
+      "previous_sibling": null
+    },
+    {
+      "go_to": {
+        "return": null,
+        "selector": "body",
+        "dialog_node": "Say piece"
+      },
+      "output": {
+        "text": { "values": [ "" ], "selection_policy": "sequential" }
+      },
+      "parent": "Say piece",
+      "context": null,
+      "created": "2017-01-25T15:00:16.115Z",
+      "updated": "2017-01-25T15:21:14.782Z",
+      "metadata": null,
+      "conditions": "#repeat",
+      "description": null,
+      "dialog_node": "Repeat",
+      "previous_sibling": "Correct color and square"
+    },
+    {
+      "go_to": {
+        "return": null,
+        "selector": "user_input",
+        "dialog_node": "Correct color and square"
+      },
+      "output": {
+        "text": {
+          "values": [ "No, you have to put a $color $figure in $square." ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Say piece",
+      "context": null,
+      "created": "2017-01-25T15:30:05.075Z",
+      "updated": "2017-01-25T15:33:07.644Z",
+      "metadata": null,
+      "conditions": "$color != $m_color && $square != $m_square",
+      "description": null,
+      "dialog_node": "Wrong color and square",
+      "previous_sibling": "Wrong color"
+    },
+    {
+      "go_to": {
+        "return": null,
+        "selector": "user_input",
+        "dialog_node": "Correct color and square"
+      },
+      "output": {
+        "text": {
+          "values": [
+            "Not in $m_square! It has to be in $square.",
+            "You have to put the $figure in $square."
+          ],
+          "selection_policy": "random"
+        }
+      },
+      "parent": "Say piece",
+      "context": null,
+      "created": "2017-01-25T15:11:17.421Z",
+      "updated": "2017-01-25T15:25:11.864Z",
+      "metadata": null,
+      "conditions": "$color == $m_color && $square != $m_square",
+      "description": null,
+      "dialog_node": "Wrong square",
+      "previous_sibling": "Repeat"
+    },
+    {
+      "go_to": {
+        "return": null,
+        "selector": "user_input",
+        "dialog_node": "Correct color and square"
+      },
+      "output": {
+        "text": {
+          "values": [
+            "It has to be a $color $figure.", "I said a $color piece.",
+            "Not a $m_color piece, a $color one."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Say piece",
+      "context": null,
+      "created": "2017-01-25T15:22:03.466Z",
+      "updated": "2017-01-25T15:43:11.947Z",
+      "metadata": null,
+      "conditions": "$color != $m_color && $square == $m_square",
+      "description": null,
+      "dialog_node": "Wrong color",
+      "previous_sibling": "Wrong square"
+    },
+    {
+      "type": "response_condition",
+      "go_to": null,
+      "output": {
+        "text": {
+          "values": [ "Put the $color $figure in $squares." ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Say pieces",
+      "context": null,
+      "created": "2017-01-25T15:40:52.038Z",
+      "updated": "2017-01-25T15:41:25.079Z",
+      "metadata": null,
+      "conditions": null,
+      "description": null,
+      "dialog_node": "node_11_1485358851746",
+      "previous_sibling": "node_10_1485358745221"
+    },
+    {
+      "type": "response_condition",
+      "go_to": null,
+      "output": {
+        "text": {
+          "values": [ "Put the $color pawns in $squares." ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Say pieces",
+      "context": null,
+      "created": "2017-01-25T15:39:05.617Z",
+      "updated": "2017-01-25T15:41:10.356Z",
+      "metadata": null,
+      "conditions": " $figure == pawn",
+      "description": null,
+      "dialog_node": "node_10_1485358745221",
+      "previous_sibling": "TODO"
+    }
+  ],
+  "workspace_id": "00432d71-5aa0-4345-8850-48f93d0ea5f8",
+  "counterexamples": []
+}
