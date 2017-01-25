@@ -5,7 +5,20 @@ let json_of_string (s: string) : json =
   Yojson.Basic.from_string s
 
 let string_of_square (i,j) =
-  Format.sprintf "(%d, %d)" i j
+  let letter =
+    begin match i with
+    | 0 -> 'a'
+    | 1 -> 'b'
+    | 2 -> 'c'
+    | 3 -> 'd'
+    | 4 -> 'e'
+    | 5 -> 'f'
+    | 6 -> 'g'
+    | 7 -> 'h'
+    | _ -> assert false
+    end
+  in
+  Format.sprintf "%c%d" letter (j+1)
 
 let string_of_color c =
   begin match c with
@@ -47,6 +60,7 @@ let intent_dispatch_of_string s =
   | "setup_position" -> Intent_setup_position
   | "undo" -> Intent_undo
   | "resign" -> Intent_resign
+  | _ -> assert false
   end
 
 let get_king (board: board) (c: color) : (int * int) option =
