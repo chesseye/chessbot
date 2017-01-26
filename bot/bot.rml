@@ -22,7 +22,7 @@ let process main text mask position reset =
     (*     emit position (Undo, pos_init); *)
     (*     emit reset pos_init *)
     | Intent_setup_position ->
-        let pos_init = Fen.position_of_fen "4k3/8/8/8/8/8/8/4K3 w - - 0 42" in
+        let pos_init = Fen.position_of_fen "4k3/8/8/8/8/8/8/4K2Q w - - 0 42" in
         run Dialog.mask_of_position conf text mask pos_init.ar;
         emit position (Undo, pos_init);
         emit reset pos_init;
