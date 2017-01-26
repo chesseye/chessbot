@@ -26,7 +26,7 @@ let process get_value wcs_config
     (* Format.printf "Chessbot: %s@." *)
     (*   (Wcs_message_j.string_of_c_output resp.rsp_output); *)
     List.iter
-      (fun txt -> print_endline ("Chessbot: " ^ txt))
+      (fun txt -> print_endline ("CBOT " ^ txt))
       resp.rsp_output.cout_text;
     begin match value_of_context resp with
     | Some v -> v
@@ -175,7 +175,7 @@ let process get_piece wcs_config text mask m_init piece square =
         req_msg
     in
     List.iter
-      (fun txt -> print_endline ("Chessbot: " ^ txt))
+      (fun txt -> print_endline ("CBOT " ^ txt))
       resp.rsp_output.cout_text;
     begin match context_of_json resp.rsp_context with
     | Some { ctx_filled = Some _ } -> ()
@@ -205,7 +205,20 @@ let process get_piece wcs_config text mask m_init piece square =
   run loop_ ctx_init "" []
 
 let process mask_of_position wcs_config text mask pos =
-  print_endline "Chessbot: The chessboard must be empty.";
+  print_endline "CBOT The chessboard must be empty.";
+  signal empty in
+  do
+    loop
+      await mask(Some m) in
+      let b = ref true in
+      for i = 0 to 7 do
+        for j = 0 to 7 do
+          if m.(i).(j) <> None then b := false
+        done
+      done;
+      if !b then emit empty
+    end
+  until empty done;
   let m = Array.make_matrix 8 8 None in
   for i = 0 to 7 do
     for j = 0 to 7 do
