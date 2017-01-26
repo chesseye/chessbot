@@ -132,7 +132,7 @@
       "description": null
     }
   ],
-  "updated": "2017-01-24T20:20:38.951Z",
+  "updated": "2017-01-26T05:46:53.817Z",
   "entities": [
     {
       "type": null,
@@ -867,14 +867,14 @@
       "go_to": null,
       "output": {
         "text": {
-          "values": [ "Sure, let me know when the new position is ready" ],
+          "values": [ "Sure, let's play a new game" ],
           "selection_policy": "sequential"
         }
       },
       "parent": null,
       "context": { "dispatch": "setup_position" },
       "created": "2017-01-24T14:49:45.645Z",
-      "updated": "2017-01-24T20:19:33.689Z",
+      "updated": "2017-01-26T05:46:53.817Z",
       "metadata": null,
       "conditions": "#setup_position",
       "description": null,
