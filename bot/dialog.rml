@@ -147,6 +147,26 @@ let process get_intent wcs_config text : intent_dispatch process =
   run get_value wcs_config wcs_config.wcs_workspace_intent_dispatch_id text
     ctx txt turn_of_resp
 
+let process get_undo wcs_config text position : int process =
+  let ctx =
+    let total_moves =
+      begin match (last ?position) with
+      | Some (_, p) -> p.number
+      | None -> max_int
+      end
+    in
+    json_of_string
+      ("{ \"totalmoves\": "^(string_of_int total_moves)^" }")
+  in
+  let undo_half_moves_of_resp resp =
+    begin match context_of_json resp.rsp_context with
+    | Some { ctx_undo_half_moves = Some n } -> Some n
+    | _ -> None
+    end
+  in
+  run get_value wcs_config wcs_config.wcs_workspace_undo_id text
+    ctx "" undo_half_moves_of_resp
+
 
 let rec process await_new_mask_diff mask m_init prev_diff =
   await mask (Some m) in

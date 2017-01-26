@@ -28,6 +28,10 @@ let wcs_workspace_piece_id = ref None
 let set_wcs_workspace_piece_id s =
   wcs_workspace_piece_id := Some s
 
+let wcs_workspace_undo_id = ref None
+let set_wcs_workspace_undo_id s =
+  wcs_workspace_undo_id := Some s
+
 let options =
   [ ("-wcs-user", Arg.String set_wcs_user,
      "username Set the Watson Conversation Service user name");
@@ -43,6 +47,8 @@ let options =
      "workspace Set the Watson Conversation Service workspace id for intent dispatch questions");
     ("-wcs-workspace-piece", Arg.String set_wcs_workspace_piece_id,
      "workspace Set the Watson Conversation Service workspace id for piece questions");
+    ("-wcs-workspace-undo", Arg.String set_wcs_workspace_undo_id,
+     "workspace Set the Watson Conversation Service workspace id for undo questions");
   ]
 
 (* Must be called after Arg.parse. *)
@@ -52,12 +58,14 @@ let get () =
                !wcs_workspace_castling_id,
                !wcs_workspace_turn_id,
                !wcs_workspace_intent_dispatch_id,
+               !wcs_workspace_undo_id,
                !wcs_workspace_piece_id) with
   | Some wcs_user, Some wcs_password,
     Some wcs_workspace_square_id,
     Some wcs_workspace_castling_id,
     Some wcs_workspace_turn_id,
     Some wcs_workspace_intent_dispatch_id,
+    Some wcs_workspace_undo_id,
     Some wcs_workspace_piece_id ->
       {  wcs_user = wcs_user;
          wcs_password = wcs_password;
@@ -65,7 +73,8 @@ let get () =
          wcs_workspace_castling_id = wcs_workspace_castling_id;
          wcs_workspace_turn_id = wcs_workspace_turn_id;
          wcs_workspace_intent_dispatch_id = wcs_workspace_intent_dispatch_id;
-         wcs_workspace_piece_id = wcs_workspace_piece_id; }
+         wcs_workspace_piece_id = wcs_workspace_piece_id;
+         wcs_workspace_undo_id = wcs_workspace_undo_id; }
   | _ ->
       Arg.usage options "Need all workspace identifiers.";
       exit 1

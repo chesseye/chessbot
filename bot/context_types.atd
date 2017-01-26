@@ -5,4 +5,5 @@ type context = {
     ?color : string option;
     ?dispatch : string option;
     ?filled : string option;
+    ?undo_half_moves <json name="undo-half-moves"> : int option;
   } <ocaml field_prefix="ctx_">

@@ -28,7 +28,8 @@ let process main text mask position reset =
         emit reset pos_init;
         pause
     | Intent_undo ->
-        print_endline "Undo not implemented"; (* XXX TODO XXX *)
+        let n = run Dialog.get_undo conf text position in
+        print_endline ("Undo("^(string_of_int n)^") not implemented"); (* XXX TODO XXX *)
         pause
     | Intent_resign ->
         print_endline "Resign not implemented"; (* XXX TODO XXX *)
